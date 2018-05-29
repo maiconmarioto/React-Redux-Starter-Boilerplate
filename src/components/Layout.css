@@ -1,0 +1,22 @@
+  html {
+    font-family: 'Roboto', sans-serif;
+    background-color: lightgray;
+  }
+
+  .card {
+    margin-top: 10vh;
+    width: 400px;
+  }
+
+  .media {
+    height: 0px;
+    padding-top: 56.25%;
+  }
+
+  .center {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+
+  }
