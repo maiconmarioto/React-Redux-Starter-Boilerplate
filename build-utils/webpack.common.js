@@ -1,10 +1,11 @@
 const commonPaths = require("./common-paths");
-
-const webpack = require("webpack");
+const OfflinePlugin = require("offline-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require("webpack");
 
 const config = {
   entry: {
+    js: ["babel-polyfill"],
     vendor: ["@material-ui/core"]
   },
   output: {
@@ -33,6 +34,16 @@ const config = {
     }
   },
   plugins: [
+    new OfflinePlugin({
+      excludes: ["**/*.map"],
+      updateStrategy: "changed",
+      autoUpdate: 1000 * 60 * 2,
+      externals: [
+        "public/favicon.ico",
+        "https://fonts.googleapis.com/css?family=Roboto",
+        "https://fonts.googleapis.com/icon?family=Material+Icons"
+      ]
+    }),
     new HtmlWebpackPlugin({
       template: "public/index.html",
       favicon: "public/favicon.ico"
@@ -41,3 +52,13 @@ const config = {
 };
 
 module.exports = config;
+
+//   plugins: [
+//     new HtmlWebpackPlugin({
+//       template: "public/index.html",
+//       favicon: "public/favicon.ico"
+//     })
+//   ]
+// };
+
+// module.exports = config;
