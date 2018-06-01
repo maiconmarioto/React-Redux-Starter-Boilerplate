@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { clickButton } from "../actions/clickAction";
-import Button from "@material-ui/core/Button";
+import { Button } from "../components/button";
 import TextField from "@material-ui/core/TextField";
 
 import Layout from "../components/Layout";
@@ -33,7 +33,7 @@ class Home extends Component {
           margin="normal"
         />
         <Button
-          variant="raised"
+          variant="outlined"
           onClick={() => {
             clickButton(this.state.inputValue);
           }}
@@ -42,7 +42,7 @@ class Home extends Component {
         </Button>
         <li>Organize Routes</li>
         <li>Assemble tests</li>
-        <li>Add StoryBook</li>
+        <li>*Add StoryBook*</li>
         <h4>{newValue}</h4>
         <p>
           <Link

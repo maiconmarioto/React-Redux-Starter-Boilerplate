@@ -43,7 +43,7 @@ const config = {
       autoUpdate: 1000 * 60 * 2,
       caches: {
         main: [":rest:"],
-        additional: ["*.chunk.js"]
+        additional: ["**/*.js"]
       },
       safeToUseOptionalCaches: true,
       AppCache: false,
