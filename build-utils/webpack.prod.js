@@ -1,7 +1,8 @@
 const commonPaths = require("./common-paths");
-
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 const config = {
   mode: "production",
@@ -45,10 +46,40 @@ const config = {
       }
     ]
   },
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          compress: {
+            drop_console: true
+          }
+        }
+      })
+    ]
+  },
   plugins: [
     new ExtractTextPlugin({
       filename: "styles/styles.[hash].css",
       allChunks: true
+    }),
+    new HtmlWebpackPlugin({
+      template: "public/index.html",
+      favicon: "public/favicon.ico",
+      fileName: "index.html",
+      minify: {
+        collapseInlineTagWhitespace: true,
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true
+      },
+      inject: true
     })
   ]
 };

@@ -38,12 +38,18 @@ class Home extends Component {
             clickButton(this.state.inputValue);
           }}
         >
-          Click Me!
+          Click Me!!!
         </Button>
+        <li>Organize Routes</li>
+        <li>Assemble tests</li>
+        <li>Add StoryBook</li>
         <h4>{newValue}</h4>
         <p>
-          <Link to="/dynamic" onClick={updateCacheOnRouteChange}>
-            Go To Dynamic Page
+          <Link
+            to="/dynamic"
+            onClick={updateCacheOnRouteChange.bind(this, "/dynamic")}
+          >
+            Dynamic Page!
           </Link>
         </p>
       </Layout>

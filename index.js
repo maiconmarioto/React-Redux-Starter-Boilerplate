@@ -11,8 +11,15 @@ const root = document.getElementById("root");
 
 sagaMiddleware.run(watcherSaga);
 OfflinePluginRuntime.install({
+  onUpdating: () => {
+    console.log("SW Event:", "onUpdating");
+  },
+  onInstalled: e => console.log("e", e),
   onUpdateReady: () => OfflinePluginRuntime.applyUpdate(),
-  onUpdated: () => (window.swUpdate = true)
+  onUpdated: () => (window.swUpdate = true),
+  onUpdateFailed: () => {
+    console.log("SW Event:", "onUpdateFailed");
+  }
 });
 
 render(

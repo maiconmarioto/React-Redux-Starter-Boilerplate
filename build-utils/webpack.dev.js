@@ -1,8 +1,9 @@
 const commonPaths = require("./common-paths");
-
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CircularDependencyPlugin = require("circular-dependency-plugin");
 const webpack = require("webpack");
 
-const port = process.env.PORT || 9000;
+const port = process.env.PORT || 8089;
 
 const config = {
   mode: "development",
@@ -33,7 +34,20 @@ const config = {
       }
     ]
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()],
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
+    new CircularDependencyPlugin({
+      exclude: /a\.js|node_modules/, // exclude node_modules
+      failOnError: false // show a warning when there is a circular dependency
+    }),
+    new HtmlWebpackPlugin({
+      template: "public/index.html",
+      favicon: "public/favicon.ico",
+      filename: "index.html",
+      inject: true
+    })
+  ],
   devServer: {
     host: "localhost",
     port: port,

@@ -1,7 +1,9 @@
 import React from "react";
-import { Switch, BrowserRouter as Router, Route } from "react-router-dom";
+import { Switch, Router, Route } from "react-router-dom";
 import importedComponent from "react-imported-component";
+import { hot } from "react-hot-loader";
 
+import history from "./history";
 import Home from "./containers/Home";
 import Loading from "./components/Layout";
 
@@ -20,7 +22,7 @@ const AsyncNoMatch = importedComponent(
 
 const App = () => {
   return (
-    <Router>
+    <Router history={history}>
       <div>
         <Switch>
           <Route exact path="/" component={Home} />
@@ -32,4 +34,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default hot(module)(App);

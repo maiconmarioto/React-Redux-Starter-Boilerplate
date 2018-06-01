@@ -1,11 +1,11 @@
 const commonPaths = require("./common-paths");
 const OfflinePlugin = require("offline-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ManifestPlugin = require("webpack-manifest-plugin");
+const PreloadWebpackPlugin = require("preload-webpack-plugin");
 const webpack = require("webpack");
 
 const config = {
   entry: {
-    js: ["babel-polyfill"],
     vendor: ["@material-ui/core"]
   },
   output: {
@@ -34,31 +34,26 @@ const config = {
     }
   },
   plugins: [
+    new ManifestPlugin(),
     new OfflinePlugin({
+      relativePaths: false,
+      publicPath: "/",
       excludes: ["**/*.map"],
       updateStrategy: "changed",
       autoUpdate: 1000 * 60 * 2,
+      caches: {
+        main: [":rest:"],
+        additional: ["*.chunk.js"]
+      },
+      safeToUseOptionalCaches: true,
+      AppCache: false,
       externals: [
         "public/favicon.ico",
         "https://fonts.googleapis.com/css?family=Roboto",
         "https://fonts.googleapis.com/icon?family=Material+Icons"
       ]
-    }),
-    new HtmlWebpackPlugin({
-      template: "public/index.html",
-      favicon: "public/favicon.ico"
     })
   ]
 };
 
 module.exports = config;
-
-//   plugins: [
-//     new HtmlWebpackPlugin({
-//       template: "public/index.html",
-//       favicon: "public/favicon.ico"
-//     })
-//   ]
-// };
-
-// module.exports = config;
