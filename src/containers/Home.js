@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { bindActionCreators } from "redux";
-import { clickButton } from "../actions/clickAction";
-import { Button } from "../components/button";
 import TextField from "@material-ui/core/TextField";
 
 import Layout from "../components/Layout";
+import { Button } from "../components/button";
+import { clickButton } from "../store/actions/clickAction";
 import { updateCacheOnRouteChange } from "../helpers";
 
 class Home extends Component {
@@ -41,8 +41,7 @@ class Home extends Component {
           Click Me!!!
         </Button>
         <li>Organize Routes</li>
-        <li>Assemble tests</li>
-        <li>*Add StoryBook*</li>
+        <li>*-Assemble tests-*</li>
         <h4>{newValue}</h4>
         <p>
           <Link

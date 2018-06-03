@@ -10,4 +10,5 @@ function* workerSaga(action) {
   console.log("Hello there!");
   console.log("We are on saga middleware");
   console.log("action", action);
+  return action;
 }

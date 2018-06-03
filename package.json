@@ -1,6 +1,6 @@
 {
-  "name": "React-Starter-v2",
-  "version": "1.0.0",
+  "name": "React-Redux-Starter-v2",
+  "version": "0.1.2",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
@@ -12,7 +12,20 @@
     "prod:analyze": "cross-env NODE_ENV=production webpack-dev-server -p --hot --env.env=prod --env.addons=bundleanalyzer --open --watch --progress --colors --inline",
     "build": "cross-env NODE_ENV=production webpack -p --env.env=prod",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "jest": {
+    "setupFiles": [
+      "./src/setupTests.js"
+    ],
+    "snapshotSerializers": [
+      "<rootDir>/node_modules/enzyme-to-json/serializer"
+    ],
+    "moduleNameMapper": {
+      "^.+\\.(css|scss)$": "identity-obj-proxy"
+    }
   },
   "dependencies": {
     "@material-ui/core": "^1.1.0",
@@ -33,7 +46,12 @@
     "styled-components": "^3.3.0"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^3.4.6",
+    "@storybook/addon-links": "^3.4.6",
+    "@storybook/addons": "^3.4.6",
+    "@storybook/react": "^3.4.6",
     "babel-core": "^6.26.3",
+    "babel-jest": "^23.0.1",
     "babel-loader": "^7.1.4",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
@@ -45,18 +63,25 @@
     "babel-preset-stage-1": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "babel-preset-stage-3": "^6.24.1",
+    "babel-runtime": "^6.26.0",
     "chalk": "^2.4.1",
     "circular-dependency-plugin": "^5.0.2",
     "cross-env": "^5.1.6",
     "css-loader": "^0.28.11",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.4",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "html-webpack-plugin": "^3.2.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^23.1.0",
     "offline-plugin": "^5.0.3",
     "postcss-loader": "^2.1.5",
     "preload-webpack-plugin": "^2.3.0",
     "purify-css": "^1.2.5",
     "purifycss-webpack": "^0.7.0",
     "react-hot-loader": "^4.2.0",
+    "redux-mock-store": "^1.5.1",
     "rimraf": "^2.6.2",
     "style-loader": "^0.21.0",
     "uglifyjs-webpack-plugin": "^1.2.5",
@@ -66,11 +91,6 @@
     "webpack-dev-server": "^3.1.4",
     "webpack-manifest-plugin": "^2.0.3",
     "webpack-merge": "^4.1.2",
-    "webpack-monitor": "^1.0.14",
-    "@storybook/react": "^3.4.6",
-    "@storybook/addon-actions": "^3.4.6",
-    "@storybook/addon-links": "^3.4.6",
-    "@storybook/addons": "^3.4.6",
-    "babel-runtime": "^6.26.0"
+    "webpack-monitor": "^1.0.14"
   }
 }
