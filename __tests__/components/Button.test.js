@@ -1,5 +1,4 @@
 import React from "react";
-import expect from "expect";
 
 import { Button } from "../../src/components/button";
 
@@ -9,7 +8,7 @@ const handleClick = () => {
 
 describe(Button, () => {
   it("should render children text", () => {
-    const button = mount(<Button>Save</Button>);
+    const button = shallow(<Button>Save</Button>);
     expect(button).toMatchSnapshot();
   });
 

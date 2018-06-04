@@ -9,7 +9,7 @@ import { Button } from "../components/button";
 import { clickButton } from "../store/actions/clickAction";
 import { updateCacheOnRouteChange } from "../helpers";
 
-class Home extends Component {
+export class Home extends Component {
   state = {
     inputValue: ""
   };
@@ -40,8 +40,6 @@ class Home extends Component {
         >
           Click Me!!!
         </Button>
-        <li>Organize Routes</li>
-        <li>*-Assemble tests-*</li>
         <h4>{newValue}</h4>
         <p>
           <Link
